@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentação - RainbowText</title>
+  <style>
+    /* Reset básico e tipografia */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0b0f19;
+      color: #e2e8f0;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* --- BARRA LATERAL (SIDEBAR) --- */
+    .sidebar {
+      width: 260px;
+      background-color: #111827;
+      border-right: 1px solid #1e293b;
+      position: fixed;
+      height: 100vh;
+      padding: 30px 20px;
+      overflow-y: auto;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .brand img {
+      width: 32px;
+      height: 32px;
+      filter: drop-shadow(0 0 8px rgba(217, 70, 239, 0.8));
+    }
+    .brand h2 {
+      font-size: 20px;
+      background: linear-gradient(90deg, #3b82f6, #d946ef);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-section {
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 15px;
+      margin-top: 25px;
+    }
+    .nav-link {
+      display: block;
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin-bottom: 5px;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      background-color: #1e293b;
+      color: #3b82f6;
+    }
+    .nav-sublink {
+      display: block;
+      color: #94a3b8;
+      text-decoration: none;
+      padding: 8px 15px 8px 40px;
+      font-size: 13px;
+      transition: 0.2s;
+    }
+    .nav-sublink:hover { color: #fff; }
+
+    /* --- CONTEÚDO PRINCIPAL --- */
+    .main-content {
+      margin-left: 260px;
+      padding: 60px;
+      flex-grow: 1;
+      max-width: 1000px;
+    }
+
+    /* Cabeçalho (Hero) */
+    .hero { text-align: center; margin-bottom: 60px; }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #3b82f6, #d946ef);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      margin-bottom: 25px;
+    }
+
+    /* Badges (Pílulas verdes na imagem, aqui neon) */
+    .badges {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+    .badge {
+      background-color: rgba(59, 130, 246, 0.1);
+      color: #60a5fa;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    .badge.pink {
+      background-color: rgba(217, 70, 239, 0.1);
+      color: #e879f9;
+      border-color: rgba(217, 70, 239, 0.3);
+    }
+
+    /* Divisória e Texto de Introdução */
+    .divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #1e293b, transparent);
+      margin: 0 auto 40px auto;
+      width: 80%;
+    }
+    .intro-text {
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      margin-bottom: 50px;
+    }
+    .intro-text strong { color: #fff; }
+
+    /* Cards Lado a Lado */
+    .cards-container {
+      display: flex;
+      gap: 25px;
+    }
+    .card {
+      background-color: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 30px 20px;
+      flex: 1;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .card:hover {
+      border-color: #3b82f6;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+    }
+    .card-icon {
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      color: #3b82f6;
+      margin-bottom: 10px;
+    }
+    .card p {
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu Lateral -->
+  <aside class="sidebar">
+    <div class="brand">
+      <!-- Substitua pelo caminho correto do seu ícone se necessário -->
+      <img src="icon48.png" alt="Logo">
+      <h2>RainbowText</h2>
+    </div>
+
+    <div class="nav-section">Navegação</div>
+    <a href="#" class="nav-link active">🏠 Início</a>
+    
+    <a href="#como-funciona" class="nav-link">📚 Como Funciona</a>
+    <a href="#autocomplete" class="nav-sublink">Autocomplete</a>
+    <a href="#dashboard" class="nav-sublink">Dashboard Escuro</a>
+    
+    <a href="#gestao" class="nav-link">⚙️ Gestão de Snaps</a>
+    <a href="#importacao" class="nav-sublink">Importação CSV</a>
+    <a href="#busca" class="nav-sublink">Pesquisa Rápida</a>
+
+    <a href="#seguranca" class="nav-link">🔒 Segurança</a>
+  </aside>
+
+  <!-- Conteúdo Central -->
+  <main class="main-content">
+    
+    <section class="hero">
+      <h1>RainbowText</h1>
+      <p>Guia Rápido e Completo de Uso</p>
+      
+      <div class="badges">
+        <span class="badge">Produtividade</span>
+        <span class="badge pink">Velocidade</span>
+        <span class="badge">Privacidade Offline</span>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <p class="intro-text">
+      O <strong>RainbowText</strong> é uma extensão desenvolvida para aumentar absurdamente a sua produtividade na escrita, eliminando tarefas repetitivas e consolidando seus atalhos em três pilares essenciais:
+    </p>
+
+    <div class="cards-container">
+      <!-- Card 1 -->
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Expansão Rápida</h3>
+        <p>(Substituição Instantânea)</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <div class="card-icon">📥</div>
+        <h3>Gestão em Massa</h3>
+        <p>(Importação via CSV)</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <div class="card-icon">🛡️</div>
+        <h3>100% Local</h3>
+        <p>(Armazenamento Seguro)</p>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
