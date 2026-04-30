@@ -23,9 +23,16 @@
       position: fixed;
       height: 100vh;
       padding: 30px 20px;
-      overflow-y: auto;
+      display: flex;
+      flex-direction: column; /* Permite empurrar o footer para o fundo */
       z-index: 100;
     }
+    
+    .sidebar-nav-container {
+      flex-grow: 1;
+      overflow-y: auto; /* Apenas os links rolam se necessário */
+    }
+
     .brand {
       display: flex;
       align-items: center;
@@ -36,10 +43,11 @@
     .brand img {
       width: 32px;
       height: 32px;
-      filter: drop-shadow(0 0 8px rgba(217, 70, 239, 0.8));
     }
     .brand h2 {
       font-size: 20px;
+      line-height: 1;
+      margin: 0;
       background: linear-gradient(90deg, #3b82f6, #d946ef);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -77,6 +85,18 @@
     }
     .nav-sublink:hover { color: #3b82f6; }
 
+    /* Estilo do Rodapé igual ao Dashboard */
+    .sidebar-footer {
+      text-align: center;
+      font-size: 10px;
+      color: #64748b;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #1e293b;
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+    }
+
     /* --- CONTEÚDO PRINCIPAL --- */
     .main-content {
       margin-left: 260px;
@@ -86,10 +106,7 @@
     }
 
     /* Seções */
-    section {
-      padding-top: 40px;
-      margin-bottom: 80px;
-    }
+    section { padding-top: 40px; margin-bottom: 80px; }
 
     .hero { text-align: center; margin-bottom: 60px; padding-top: 0; }
     .hero h1 {
@@ -133,13 +150,39 @@
       border-radius: 12px;
       padding: 30px 20px;
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       transition: 0.3s;
     }
     .card:hover { border-color: #d946ef; transform: translateY(-5px); }
     .card-icon { font-size: 32px; margin-bottom: 15px; }
+    .card h3 { margin: 0 0 10px 0; }
+    .card p { margin: 0; }
+    
+    .screenshot-container {
+      margin: 20px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #1e293b;
+      background: #0f172a;
+    }
 
-    /* Estilo de Tabela (como no SnapIt) */
+    .doc-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      opacity: 0.9;
+      transition: 0.3s;
+    }
+
+    .doc-img:hover {
+      opacity: 1;
+    }
+
+    /* Estilo de Tabela */
     table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #0f172a; border-radius: 8px; overflow: hidden; }
     th { background: #1e293b; color: #fff; text-align: left; padding: 15px; font-size: 14px; }
     td { padding: 15px; border-bottom: 1px solid #1e293b; color: #cbd5e1; font-size: 14px; }
@@ -148,22 +191,28 @@
 <body>
 
   <aside class="sidebar">
-    <a href="#inicio" class="brand">
-      <img src="icon128.png" alt="Logo">
-      <h2>RainbowText</h2>
-    </a>
+    <div class="sidebar-nav-container">
+      <a href="#inicio" class="brand">
+        <img src="icon128.png" alt="Logo">
+        <h2>RainbowText</h2>
+      </a>
 
-    <div class="nav-section">Navegação</div>
-    <a href="#inicio" class="nav-link">🏠 Início</a>
-    
-    <a href="#como-funciona" class="nav-link">📚 Como Funciona</a>
-    <a href="#autocomplete" class="nav-sublink">Autocomplete</a>
-    <a href="#dashboard" class="nav-sublink">Dashboard Hi-Tech</a>
-    
-    <a href="#gestao" class="nav-link">⚙️ Gestão de Snaps</a>
-    <a href="#importacao" class="nav-sublink">Importação CSV</a>
+      <div class="nav-section">Navegação</div>
+      <a href="#inicio" class="nav-link">🏠 Início</a>
+      
+      <a href="#como-funciona" class="nav-link">📚 Como Funciona</a>
+      <a href="#autocomplete" class="nav-sublink">Autocomplete</a>
+      <a href="#dashboard" class="nav-sublink">Dashboard Hi-Tech</a>
+      
+      <a href="#gestao" class="nav-link">⚙️ Gestão de Snaps</a>
+      <a href="#importacao" class="nav-sublink">Importação CSV</a>
 
-    <a href="#seguranca" class="nav-link">🔒 Segurança</a>
+      <a href="#seguranca" class="nav-link">🔒 Segurança</a>
+    </div>
+
+    <footer class="sidebar-footer">
+      &copy; Matheus Sena<br>Todos os direitos reservados.
+    </footer>
   </aside>
 
   <main class="main-content">
@@ -174,7 +223,7 @@
       
       <div class="badges">
         <span class="badge">Produtividade</span>
-        <span class="badge pink">Velocidade Neon</span>
+        <span class="badge pink">Velocidade</span>
         <span class="badge">Privacidade</span>
       </div>
 
@@ -239,7 +288,7 @@
       </table>
 
       <h3 id="dashboard">Dashboard Hi-Tech</h3>
-      <p>O painel de controle foi desenhado para ser intuitivo e rápido. Lá você pode criar novos "Snaps" (atalhos), excluir ou editar os existentes com um visual moderno e escuro.</p>
+      <p>O painel de controle foi desenhado para ser intuitivo e rápido. Lá você pode criar novos atalhos, excluir ou editar os existentes com um visual moderno e escuro.</p>
     </section>
 
     <section id="gestao">
@@ -248,6 +297,11 @@
 
       <h3 id="importacao">Importação e Exportação (CSV)</h3>
       <p>Se você já possui uma lista de respostas em uma planilha, não precisa cadastrar uma por uma. O RainbowText aceita arquivos <strong>CSV</strong>.</p>
+      
+      <div class="screenshot-container">
+        <img src="exemplo-planilha.png" alt="Exemplo de Planilha CSV" class="doc-img">
+      </div>
+
       <p><strong>Dica:</strong> Certifique-se de que a Coluna A seja o "Nome do Atalho" e a Coluna B seja a "Mensagem".</p>
     </section>
 
@@ -264,17 +318,20 @@
   </main>
 
   <script>
-    // Script simples para marcar o link ativo na sidebar enquanto rola a página
     window.addEventListener('scroll', () => {
       let current = "";
       const sections = document.querySelectorAll("section");
       
       sections.forEach((section) => {
         const sectionTop = section.offsetTop;
-        if (pageYOffset >= sectionTop - 100) {
+        if (pageYOffset >= sectionTop - 150) {
           current = section.getAttribute("id");
         }
       });
+
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+        current = sections[sections.length - 1].getAttribute("id");
+      }
 
       document.querySelectorAll(".nav-link, .nav-sublink").forEach((a) => {
         a.classList.remove("active");
